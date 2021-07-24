@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.0.0
   flutter_native_splash: ^1.2.0
   mailer: ^5.0.1
+  youtube_player_flutter: ^8.0.0
 
   # animated_text_kit: ^4.2.1
   # firebase_core: ^1.2.0
