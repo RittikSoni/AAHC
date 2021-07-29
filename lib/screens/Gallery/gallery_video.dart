@@ -5,13 +5,13 @@ void main() => runApp(GalleryVideo());
 
 Future<void> _launchInWebViewWithJavaScript() async {
   if (await canLaunch(
-      'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww')) {
+      'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww?sub_confirmation=1')) {
     await launch(
-      'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww',
-      forceSafariVC: true,
-      forceWebView: true,
-      enableJavaScript: true,
-      enableDomStorage: true,
+      'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww?sub_confirmation=1',
+      // forceSafariVC: true,
+      // forceWebView: true,
+      // enableJavaScript: true,
+      // enableDomStorage: true,
     );
   } else {
     throw 'Could not launch';

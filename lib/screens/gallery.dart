@@ -1,11 +1,12 @@
+import 'package:aahc/screens/Gallery/bottom_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'gallery_details.dart';
-import 'gallery_images.dart';
-import 'gallery_video.dart';
+import 'Gallery/gallery_images.dart';
+import 'Gallery/gallery_video.dart';
+import 'Gallery/gallery_fonts.dart';
 
 int _gindex = 0;
-List tabs = [const GalleryImages(), GalleryVideo()];
+List tabs = [const GalleryImages(), GalleyFontD(), GalleryVideo()];
 
 class Gallery extends StatefulWidget {
   @override
@@ -19,14 +20,21 @@ class _GalleryState extends State<Gallery> {
       appBar: AppBar(
         title: GNav(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          tabBackgroundGradient:
-              const LinearGradient(colors: [Colors.black, Colors.amberAccent]),
+          tabBackgroundGradient: const LinearGradient(
+              colors: [Colors.cyan, Colors.blue],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter),
           rippleColor: Colors.amber,
+          color: Colors.cyan,
           gap: 10,
           tabs: const [
             GButton(
               icon: Icons.image,
               text: 'Images',
+            ),
+            GButton(
+              icon: Icons.design_services,
+              text: 'Fonts',
             ),
             GButton(
               icon: Icons.movie,

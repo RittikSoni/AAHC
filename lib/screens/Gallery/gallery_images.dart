@@ -14,7 +14,7 @@ class _GalleryImagesState extends State<GalleryImages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0A0E21),
+      // backgroundColor: Color(0xFF0A0E21),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -24,7 +24,7 @@ class _GalleryImagesState extends State<GalleryImages> {
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 30, bottom: 5),
                 decoration: const BoxDecoration(
-                  color: Color(0xFF0c1230),
+                  // color: Color(0xFF0c1230),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),

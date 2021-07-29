@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
                   borderRadius:
                       BorderRadius.only(bottomRight: Radius.circular(50)),
                   image: DecorationImage(
+                    alignment: Alignment.centerLeft,
                     image: AssetImage('images/office.jpg'),
                     fit: BoxFit.cover,
                     colorFilter:
@@ -38,6 +39,7 @@ class _HomeState extends State<Home> {
                     Text(
                       'AAHC',
                       style: TextStyle(
+                          color: Colors.white,
                           fontSize: 40,
                           letterSpacing: 5,
                           fontWeight: FontWeight.bold),
@@ -48,7 +50,8 @@ class _HomeState extends State<Home> {
                     ),
                     Text(
                       'AASTHA ASSAYING & HALLMARKING',
-                      style: TextStyle(fontSize: 25, letterSpacing: 5),
+                      style: TextStyle(
+                          fontSize: 25, letterSpacing: 5, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ],
