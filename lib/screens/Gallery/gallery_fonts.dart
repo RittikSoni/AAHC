@@ -1,9 +1,8 @@
-import 'package:aahc/data/font_styles.dart';
+import 'package:aahc/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:aahc/screens/Gallery/bottom_fonts.dart';
 
 class GalleyFontD extends StatefulWidget {
   @override

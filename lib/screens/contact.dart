@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:aahc/components/url_launcher.dart';
+import 'package:aahc/constants.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -101,16 +103,54 @@ class _ContactState extends State<Contact> {
               const SizedBox(
                 height: 30,
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 0, bottom: 40),
-                child: Text(
-                  '''1733,3rd Floor\nDariba kalan, Chandni chowk\nDelhi-110006\nIndia''',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                  textAlign: TextAlign.left,
+              Padding(
+                padding: EdgeInsets.only(top: 0, bottom: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      '''1733,3rd Floor\nDariba kalan, Chandni chowk\nDelhi-110006\nIndia''',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      textAlign: TextAlign.left,
+                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       setState(() {
+                    //         UrlLauncher(url: 'tel:%20+91%209582792574')
+                    //             .launchInWebViewWithJavaScript();
+                    //       });
+                    //     },
+                    //     style: socialMediaButtonStyle,
+                    //     child: const Text(
+                    //       '+91-9582792574',
+                    //       style: TextStyle(
+                    //         color: Colors.black,
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 20,
+                    //       ),
+                    //     ))
+                  ],
                 ),
               ),
               const SizedBox(
                 height: 30,
+              ),
+              const Text(
+                'Follow Us',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const Divider(
+                height: 30,
+                thickness: 1.5,
+                color: Colors.amber,
+                indent: 60.0,
+                endIndent: 60.0,
               ),
               Row(
                 //**social media */
@@ -145,22 +185,10 @@ class _ContactState extends State<Contact> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        Future<void> _launchInWebViewWithJavaScript() async {
-                          if (await canLaunch(
-                              'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww?sub_confirmation=1')) {
-                            await launch(
-                              'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww?sub_confirmation=1',
-                              // forceSafariVC: true,
-                              // forceWebView: true,
-                              // enableJavaScript: true,
-                              // enableDomStorage: true,
-                            );
-                          } else {
-                            throw 'Could not launch';
-                          }
-                        }
-
-                        _launchInWebViewWithJavaScript();
+                        UrlLauncher(
+                                url:
+                                    'https://www.youtube.com/channel/UCK1zIQG6js6XSum6jHzbnww?sub_confirmation=1')
+                            .launchInWebViewWithJavaScript();
                       });
                     },
                     child: const Text(
@@ -174,22 +202,8 @@ class _ContactState extends State<Contact> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        Future<void> _launchInWebViewWithJavaScript() async {
-                          if (await canLaunch(
-                              'https://twitter.com/AHallmarking')) {
-                            await launch(
-                              'https://twitter.com/AHallmarking',
-                              // forceSafariVC: true,
-                              // forceWebView: true,
-                              // enableJavaScript: true,
-                              // enableDomStorage: true,
-                            );
-                          } else {
-                            throw 'Could not launch';
-                          }
-                        }
-
-                        _launchInWebViewWithJavaScript();
+                        UrlLauncher(url: 'https://twitter.com/AHallmarking')
+                            .launchInWebViewWithJavaScript();
                       });
                     },
                     child: const Text(
@@ -203,22 +217,10 @@ class _ContactState extends State<Contact> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        Future<void> _launchInWebViewWithJavaScript() async {
-                          if (await canLaunch(
-                              "https://wa.me/919582792574?text=Hello%20I%20want%20to%20know%20about%20")) {
-                            await launch(
-                              "https://wa.me/919582792574?text=Hello%20I%20want%20to%20know%20about%20",
-                              // forceSafariVC: true,
-                              // forceWebView: true,
-                              // enableJavaScript: true,
-                              // enableDomStorage: true,
-                            );
-                          } else {
-                            throw 'Could not launch';
-                          }
-                        }
-
-                        _launchInWebViewWithJavaScript();
+                        UrlLauncher(
+                                url:
+                                    "https://wa.me/919582792574?text=Hello%20,%20")
+                            .launchInWebViewWithJavaScript();
                       });
                     },
                     child: const Text(
@@ -237,22 +239,11 @@ class _ContactState extends State<Contact> {
               TextButton(
                 onPressed: () {
                   setState(() {
-                    Future<void> _launchInWebViewWithJavaScript() async {
-                      if (await canLaunch(
-                          'https://www.google.com/maps/place/Aastha+Hallmarking+Centre/@28.6556217,77.2312871,17z/data=!3m1!4b1!4m5!3m4!1s0x390cfd1b9790e28d:0xc7efea93ad77ada0!8m2!3d28.6556237!4d77.2333993')) {
-                        await launch(
-                          'https://www.google.com/maps/place/Aastha+Hallmarking+Centre/@28.6556217,77.2312871,17z/data=!3m1!4b1!4m5!3m4!1s0x390cfd1b9790e28d:0xc7efea93ad77ada0!8m2!3d28.6556237!4d77.2333993',
-                          // forceSafariVC: true,
-                          // forceWebView: true,
-                          // enableJavaScript: true,
-                          // enableDomStorage: true,
-                        );
-                      } else {
-                        throw 'Could not launch';
-                      }
-                    }
-
-                    _launchInWebViewWithJavaScript();
+                    UrlLauncher(
+                            url:
+                                'https://www.google.com/maps/place/Aastha+Hallmarking+Centre/@28.6556217,77.2312871,17z/data=!3m1!4b1!4m5!3m4!1s0x390cfd1b9790e28d:0xc7efea93ad77ada0!8m2!3d28.6556237!4d77.2333993')
+                        .launchInWebViewWithJavaScript();
+                    // _launchInWebViewWithJavaScript();
                   });
                 },
                 child: const ListTile(
@@ -292,23 +283,18 @@ class _ContactState extends State<Contact> {
               //   sendEmail(name: value);
               // },
               cursorColor: Colors.amber,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  labelText: 'Name'),
+              decoration: kTextfieldDecoration.copyWith(hintText: 'Name'),
               maxLength: 20,
             ),
             TextField(
               // onSubmitted: (value) => sendEmail(subject: value),
+
               controller: _scontroller,
               cursorColor: Colors.amber,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  labelText: 'Subject'),
-              maxLength: 20,
+              decoration: kTextfieldDecoration,
+              maxLength: 100,
             ),
-            TextFormField(
+            TextField(
               // onFieldSubmitted: (value) {
               //   sendEmail(
               //     email: value,
@@ -318,10 +304,7 @@ class _ContactState extends State<Contact> {
               controller: _econtroller,
 
               cursorColor: Colors.amber,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  labelText: 'E-mail'),
+              decoration: kTextfieldDecoration.copyWith(hintText: 'Email'),
             ),
             const SizedBox(
               height: 20,
@@ -333,13 +316,10 @@ class _ContactState extends State<Contact> {
               //   _mcontroller.clear();
               // },
               cursorColor: Colors.amber,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  labelText: 'Message...'),
+              decoration: kTextfieldDecoration.copyWith(hintText: 'Message'),
               maxLines: 10,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(

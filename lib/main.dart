@@ -1,14 +1,24 @@
-import 'package:aahc/screens/about.dart';
-import 'package:aahc/screens/faq.dart';
+import 'package:aahc/screens/certificate.dart';
+import 'package:aahc/screens/getimage.dart';
+import 'package:aahc/screens/login/login_card.dart';
+import 'package:aahc/screens/login/login_jobs.dart';
 import 'package:aahc/screens/more.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'constants.dart';
 import 'screens/home.dart';
 import 'screens/contact.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'screens/gallery.dart';
 
-void main() => runApp(Aahc());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Firebase.initializeApp();
+  runApp(Aahc());
+}
 
 class Aahc extends StatefulWidget {
   @override
@@ -18,13 +28,15 @@ class Aahc extends StatefulWidget {
 class _AahcState extends State<Aahc> {
   bool isDark = false;
   int _index = 0;
+
   List screens = [
     Home(),
     Gallery(),
-    Text('cert'),
+    ADGL(),
     Contact(),
     More(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -57,6 +69,7 @@ class _AahcState extends State<Aahc> {
                 onPressed: () {
                   setState(() {
                     isDark ? isDark = false : isDark = true;
+                    isADark = isDark;
                   });
                 },
                 icon: Icon(isDark ? Icons.dark_mode : Icons.wb_sunny),
@@ -103,8 +116,8 @@ class _AahcState extends State<Aahc> {
                 text: 'Gallery',
               ),
               GButton(
-                icon: Icons.credit_card,
-                text: 'AAHC Report',
+                icon: Icons.auto_awesome,
+                text: 'ADGL',
               ),
               // GButton(
               //   icon: Icons.people,

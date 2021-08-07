@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -35,20 +38,25 @@ class _HomeState extends State<Home> {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'AAHC',
-                      style: TextStyle(
+                  children: [
+                    TextLiquidFill(
+                      loadDuration: const Duration(microseconds: 10),
+                      loadUntil: 0.5,
+                      boxHeight: 45,
+                      boxWidth: 150,
+                      text: 'AAHC',
+                      waveColor: Colors.lightBlueAccent,
+                      textStyle: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                           letterSpacing: 5,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Text(
+                    const Text(
                       'AASTHA ASSAYING & HALLMARKING',
                       style: TextStyle(
                           fontSize: 25, letterSpacing: 5, color: Colors.white),
@@ -58,8 +66,10 @@ class _HomeState extends State<Home> {
                 )),
             Container(
               decoration: const BoxDecoration(color: Colors.white),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                direction: Axis.horizontal,
+                runAlignment: WrapAlignment.center,
                 children: [
                   Image.asset(
                     'images/bis.png',

@@ -1,9 +1,8 @@
-import 'package:aahc/data/font_styles.dart';
+import 'package:aahc/constants.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'gallery_fonts.dart';
-import 'gallery_fonts.dart';
 
 class BottomFonts extends StatefulWidget {
   @override
