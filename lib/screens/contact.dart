@@ -191,13 +191,11 @@ class _ContactState extends State<Contact> {
                             .launchInWebViewWithJavaScript();
                       });
                     },
-                    child: const Text(
-                      'Youtube',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Image(
+                      image: AssetImage('images/social/youtube.png'),
+                      width: 35,
+                      height: 35,
                     ),
-                    style: socialMediaButtonStyle,
                   ),
                   TextButton(
                     onPressed: () {
@@ -206,13 +204,11 @@ class _ContactState extends State<Contact> {
                             .launchInWebViewWithJavaScript();
                       });
                     },
-                    child: const Text(
-                      'Twitter',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Image(
+                      image: AssetImage('images/social/twitter.png'),
+                      width: 35,
+                      height: 35,
                     ),
-                    style: socialMediaButtonStyle,
                   ),
                   TextButton(
                     onPressed: () {
@@ -223,13 +219,11 @@ class _ContactState extends State<Contact> {
                             .launchInWebViewWithJavaScript();
                       });
                     },
-                    child: const Text(
-                      'Whatsapp',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Image(
+                      image: AssetImage('images/social/whatsapp (1).png'),
+                      width: 35,
+                      height: 35,
                     ),
-                    style: socialMediaButtonStyle,
                   ),
                 ],
               ),
@@ -278,6 +272,7 @@ class _ContactState extends State<Contact> {
               ),
             ),
             TextField(
+              textInputAction: TextInputAction.next,
               controller: _ncontroller,
               // onSubmitted: (value) {
               //   sendEmail(name: value);
@@ -287,6 +282,7 @@ class _ContactState extends State<Contact> {
               maxLength: 20,
             ),
             TextField(
+              textInputAction: TextInputAction.next,
               // onSubmitted: (value) => sendEmail(subject: value),
 
               controller: _scontroller,
@@ -295,6 +291,7 @@ class _ContactState extends State<Contact> {
               maxLength: 100,
             ),
             TextField(
+              textInputAction: TextInputAction.next,
               // onFieldSubmitted: (value) {
               //   sendEmail(
               //     email: value,

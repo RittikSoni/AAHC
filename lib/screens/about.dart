@@ -114,24 +114,25 @@ class _AboutState extends State<About> {
             padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
             child: Container(
               decoration: const BoxDecoration(
-                  border: Border(
-                top: BorderSide(
-                  color: Colors.amber,
-                  width: 5,
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.amber,
+                    width: 5,
+                  ),
+                  bottom: BorderSide(
+                    color: Colors.blueAccent,
+                    width: 5,
+                  ),
+                  right: BorderSide(
+                    color: Colors.red,
+                    width: 5,
+                  ),
+                  left: BorderSide(
+                    color: Colors.green,
+                    width: 5,
+                  ),
                 ),
-                bottom: BorderSide(
-                  color: Colors.blueAccent,
-                  width: 5,
-                ),
-                right: BorderSide(
-                  color: Colors.red,
-                  width: 5,
-                ),
-                left: BorderSide(
-                  color: Colors.green,
-                  width: 5,
-                ),
-              )),
+              ),
               child: const Text(
                 'AASTHA ASSAYING & HALLMARKING',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),

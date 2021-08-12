@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-bool isADark = false;
+bool isADark = true;
 
 class kAnimatedColors {
   static const colorizeColors = [
@@ -11,12 +12,57 @@ class kAnimatedColors {
   ];
 }
 
+const kBorderColors = Border(
+  top: BorderSide(
+    color: Colors.amber,
+    width: 5,
+  ),
+  bottom: BorderSide(
+    color: Colors.blueAccent,
+    width: 5,
+  ),
+  right: BorderSide(
+    color: Colors.red,
+    width: 5,
+  ),
+  left: BorderSide(
+    color: Colors.green,
+    width: 5,
+  ),
+);
+const kTableBorderColors = TableBorder(
+  top: BorderSide(
+    color: Colors.red,
+    width: 5,
+  ),
+  bottom: BorderSide(
+    color: Colors.blueAccent,
+    width: 5,
+  ),
+  right: BorderSide(
+    color: Colors.amber,
+    width: 5,
+  ),
+  left: BorderSide(
+    color: Colors.teal,
+    width: 5,
+  ),
+);
+
 const List<String> fontFamily = [
   'Dancing Script',
   'PT Serif',
   'Pacifico',
   'Major Mono Display',
-  'Syne Mono'
+  'Syne Mono',
+  'Sacramento',
+  'Great Vibes',
+  'Cinzel Decorative',
+  'Cinzel',
+  'Playball',
+  'Monoton',
+  'Wallpoet',
+  'UnifrakturMaguntia'
 ];
 
 const kMessageContainerDecoration = BoxDecoration(
@@ -124,6 +170,26 @@ List<ItemModel> itemData = <ItemModel>[
         '8. Is it necessary to have hallmarking on both the articles/jewellery in pairs and on all detachable parts?',
     discription:
         "Each article in pair should have hallmark. Customer should look for hallmarking and fineness details in each article to prevent any misuse w.r.t fineness/purity..",
+    // colorsItem: Colors.deepOrange,
+  ),
+  ItemModel(
+    headerItem:
+        '9. Can people sell their old jewellery to jewelers after Hallmarking becomes mandatory?',
+    discription:
+        "Yes, Consumer can sell old un-hallmarked jewellery lying with them to jeweller . The jeweller may melt the jewellery and make new jewellery and get it hallmarked before reselling it.",
+    // colorsItem: Colors.deepOrange,
+  ),
+  ItemModel(
+    headerItem:
+        '10. How to send jewellery to Assaying & Hallmarking Centre using the Portal?',
+    discription:
+        "At the Jeweller’s end, the jeweller first needs to visit e-BIS website i.e. www.manakonline.in and select the ‘Hallmarking’ tile. Following this the list of steps to be followed by the jeweller to send jewellery to Assaying & Hallmarking Centre through the portal are as follows:\n» Login with Username and Password\n» Click on ‘Hallmarking’ tile\n» Click on ‘New Request tab’ to generate new request\n» Select the AHC and fill the requisite details like Item Category, Quantity, Item Category Weight, and Declared purity in the ‘Jeweller’s Hallmarking Request’ page.\n» Click on ‘Submit to AHC’",
+    // colorsItem: Colors.deepOrange,
+  ),
+  ItemModel(
+    headerItem: '11. What will happen to the jewellery for import?',
+    discription:
+        "The jewellery may be imported in India and can be sold by registered jeweller after it is assayed and hallmarked by a BIS recognised hallmarking centre.",
     // colorsItem: Colors.deepOrange,
   ),
 ];

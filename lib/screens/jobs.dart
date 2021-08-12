@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 final _firestore = FirebaseFirestore.instance;
-bool isJobAvailable = false;
 
 class Jobs extends StatelessWidget {
   @override
@@ -26,12 +26,18 @@ class Jobs extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          const Text(
-            'WE ARE HIRING !!\n\n BECOME A PART OF OUR STORY',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.pinkAccent, fontSize: 30),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            color: Colors.amber,
+            child: const Center(
+              child: Text(
+                'BECOME A PART OF OUR STORY',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.pinkAccent, fontSize: 30),
+              ),
+            ),
           ),
-          MessagesStream()
+          MessagesStream(),
         ],
       )),
     );
@@ -56,8 +62,19 @@ class _MessagesStreamState extends State<MessagesStream> {
 
         if (!snapshot.hasData) {
           return Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.lightBlueAccent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Text(
+                  'No jobs are available at this momment.Please check later.',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                CircularProgressIndicator(
+                  backgroundColor: Colors.lightBlueAccent,
+                ),
+              ],
             ),
           );
         }
@@ -111,7 +128,7 @@ class _MessageBubbleState extends State<MessageBubble> {
             tileColor: Colors.pinkAccent,
             title: Text(
               widget.text,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.amber,
                   fontSize: 30,
                   fontWeight: FontWeight.bold),

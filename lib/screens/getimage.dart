@@ -26,7 +26,7 @@ class _GetImageState extends State<GetImage> {
   final _firestore = FirebaseFirestore.instance;
   String bgimg = 'https://www.w3schools.com/howto/img_nature_wide.jpg';
   String status =
-      'Please Check your Certificate No. & if the problem continues, contact us';
+      'Please Check your Certificate ID & if the problem continues, contact us';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'package:aahc/screens/Gallery/bottom_fonts.dart';
+import 'package:aahc/screens/new_cloud_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'Gallery/gallery_images.dart';
@@ -6,7 +7,12 @@ import 'Gallery/gallery_video.dart';
 import 'Gallery/gallery_fonts.dart';
 
 int _gindex = 0;
-List tabs = [const GalleryImages(), GalleyFontD(), GalleryVideo()];
+List tabs = [
+  const GalleryImages(),
+  CloudGallery(),
+  GalleyFontD(),
+  GalleryVideo()
+];
 
 class Gallery extends StatefulWidget {
   @override
@@ -30,6 +36,10 @@ class _GalleryState extends State<Gallery> {
           tabs: const [
             GButton(
               icon: Icons.image,
+              text: 'Images',
+            ),
+            GButton(
+              icon: Icons.image_search,
               text: 'Images',
             ),
             GButton(

@@ -22,22 +22,34 @@ class _LoginCardState extends State<LoginCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.lightBlueAccent.withOpacity(0.3),
         actions: [
           IconButton(
               onPressed: () {
                 _auth.signOut();
                 Navigator.pop(context);
               },
-              icon: const Icon(Icons.logout))
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ))
         ],
-        title: Text('AAHC'),
+        title: Text(
+          'AAHC',
+          style: TextStyle(color: Colors.blue),
+        ),
       ),
       body: ListView(
         children: [
           Container(
             child: imageFile == null
-                ? Image(image: AssetImage('images/office2.jpg'))
+                ? Image(
+                    image: AssetImage('images/aahc_logo1.png'),
+                    width: 200,
+                    height: 200,
+                  )
                 : Image.file(
                     imageFile!,
                     width: 400,
@@ -83,7 +95,10 @@ class _LoginCardState extends State<LoginCard> {
         context: context,
         builder: (BuildContext) {
           return AlertDialog(
-            title: Text('choose'),
+            title: Text(
+              'choose',
+              style: TextStyle(color: Colors.blue),
+            ),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
@@ -117,14 +132,16 @@ class _LoginCardState extends State<LoginCard> {
   }
 
   Future<void> openCamera() async {
-    imageFile = File(await ImagePicker()
-        .pickImage(source: ImageSource.camera)
-        .then((pickedFile) {
-      setState(() {
-        pickedFile!.path;
-      });
-      return pickedFile!.path;
-    }));
+    imageFile = File(
+      await ImagePicker().pickImage(source: ImageSource.camera).then(
+        (pickedFile) {
+          setState(() {
+            pickedFile!.path;
+          });
+          return pickedFile!.path;
+        },
+      ),
+    );
   }
 
   Future<void> upload() async {
@@ -151,16 +168,24 @@ class _LoginCardState extends State<LoginCard> {
           .collection('certDetails')
           .add({'imageURL': url, 'name': controller.text});
       showDialog(
-          context: context,
-          builder: (BuildContext) {
-            return AlertDialog(
-                title: Text('Successfully Uploaded!!'),
-                actions: [
-                  ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('Ok')),
-                ]);
-          });
+        context: context,
+        builder: (BuildContext) {
+          return AlertDialog(
+            title: Text(
+              'Successfully Uploaded!!',
+              style: TextStyle(
+                color: Colors.blue,
+              ),
+            ),
+            actions: [
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }

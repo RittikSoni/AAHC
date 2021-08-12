@@ -5,6 +5,7 @@ import 'package:aahc/screens/about.dart';
 import 'package:aahc/screens/faq.dart';
 import 'package:aahc/screens/jobs.dart';
 import 'package:aahc/screens/login.dart';
+import 'package:aahc/screens/testing.dart';
 import 'package:flutter/material.dart';
 
 class More extends StatefulWidget {
@@ -37,6 +38,11 @@ class _MoreState extends State<More> {
                     btncolor: Colors.amber,
                   ),
                   MoreButton(screen: About(), buttonName: 'About'),
+                  MoreButton(
+                    screen: Testing(),
+                    buttonName: 'Testing Report',
+                    btncolor: Colors.green,
+                  ),
                   MoreButton(
                       screen: Faq(),
                       buttonName: 'Frequently Asked Questions (FAQ)'),

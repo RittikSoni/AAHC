@@ -1,7 +1,4 @@
 import 'package:aahc/screens/certificate.dart';
-import 'package:aahc/screens/getimage.dart';
-import 'package:aahc/screens/login/login_card.dart';
-import 'package:aahc/screens/login/login_jobs.dart';
 import 'package:aahc/screens/more.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +23,7 @@ class Aahc extends StatefulWidget {
 }
 
 class _AahcState extends State<Aahc> {
-  bool isDark = false;
+  bool isDark = true;
   int _index = 0;
 
   List screens = [
@@ -128,6 +125,10 @@ class _AahcState extends State<Aahc> {
                 text: 'Contact Us',
               ),
               GButton(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.zero,
+                    bottomRight: Radius.circular(20),
+                    topLeft: Radius.circular(20)),
                 icon: Icons.more_horiz_outlined,
                 text: 'More',
               ),

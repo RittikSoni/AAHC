@@ -2,6 +2,7 @@ import 'package:aahc/constants.dart';
 import 'package:aahc/screens/login/login_card.dart';
 import 'package:aahc/screens/login/login_gallery.dart';
 import 'package:aahc/screens/login/login_jobs.dart';
+import 'package:aahc/screens/login/login_testing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -13,7 +14,12 @@ class LoginNav extends StatefulWidget {
 class _LoginNavState extends State<LoginNav> {
   int _index = 0;
 
-  List screens = [LoginCard(), LoginGallery(), LoginJobs()];
+  List screens = [
+    LoginTesting(),
+    LoginCard(),
+    LoginGallery(),
+    LoginJobs(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,10 @@ class _LoginNavState extends State<LoginNav> {
         color: isADark ? Colors.black : Colors.amber,
         activeColor: isADark ? Colors.black : Colors.white,
         tabs: const [
+          GButton(
+            icon: Icons.surfing,
+            text: 'Testing',
+          ),
           GButton(
             icon: Icons.credit_card,
             text: 'CARD',

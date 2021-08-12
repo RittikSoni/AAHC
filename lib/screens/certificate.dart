@@ -13,10 +13,10 @@ class ADGL extends StatefulWidget {
 }
 
 class _ADGLState extends State<ADGL> {
-  Widget appBarTitle = const Text(
-    'ADGL Certificate',
-    style: TextStyle(color: Colors.lightBlueAccent),
-  );
+  // Widget appBarTitle = const Text(
+  //   'ADGL Certificate',
+  //   style: TextStyle(color: Colors.lightBlueAccent),
+  // );
   Icon actionIcon = const Icon(
     Icons.search,
     color: Colors.pinkAccent,
@@ -29,85 +29,56 @@ class _ADGLState extends State<ADGL> {
     return Scaffold(
         appBar: AppBar(
           //*  A P P B A R /
-          title: appBarTitle,
+          title: TextField(
+              controller: _controller,
+              // onChanged: (value) {
+              //   setState(() {
+              //     adglReportID = value;
+              //   });
+              // },
+
+              decoration: kTextfieldDecoration.copyWith(
+                  hintText: 'Enter your Certificate ID',
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        if (_controller.text.isEmpty ||
+                            _controller.text.contains(RegExp(
+                                r'(\W\D)' // \W for not words and \D for non digit for more instructions check online regexp
+                                //* r'(\:|\;|\{|\}|\]|\[|\$|\^|\(|\)|\\|\/|\.|\"|\=|\+|\-|\_|\@|\#|\!|\%|\*|\&)' | means or in regexp
+                                ))) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext) {
+                                return AlertDialog(
+                                  title: Text(
+                                    'Please Check your Certificate ID',
+                                    style: TextStyle(
+                                        color: isADark
+                                            ? Colors.lightBlue
+                                            : Colors.amber),
+                                  ),
+                                  content: Text(
+                                      'If the problem continues, Please contact us. We apologize for the inconvenience'),
+                                  actions: [
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Ok'))
+                                  ],
+                                );
+                              });
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GetImage(
+                                        searchedText: _controller.text,
+                                      )));
+                        }
+                      },
+                      icon: const Icon(Icons.search)))),
           centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: actionIcon,
-              onPressed: () {
-                setState(() {
-                  if (actionIcon.icon == Icons.search) {
-                    actionIcon = const Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    );
-                    appBarTitle = TextField(
-                        controller: _controller,
-                        // onChanged: (value) {
-                        //   setState(() {
-                        //     adglReportID = value;
-                        //   });
-                        // },
-
-                        decoration: kTextfieldDecoration.copyWith(
-                            hintText: 'Enter your Certificate No.',
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  if (_controller.text.isEmpty ||
-                                      _controller.text.contains(RegExp(
-                                          r'(\W\D)' // \W for not words and \D for non digit for more instructions check online regexp
-                                          //* r'(\:|\;|\{|\}|\]|\[|\$|\^|\(|\)|\\|\/|\.|\"|\=|\+|\-|\_|\@|\#|\!|\%|\*|\&)' | means or in regexp
-                                          ))) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext) {
-                                          return AlertDialog(
-                                            title: Text(
-                                              'Please Check your certificate no.',
-                                              style: TextStyle(
-                                                  color: isADark
-                                                      ? Colors.lightBlue
-                                                      : Colors.amber),
-                                            ),
-                                            content: Text(
-                                                'If the problem continues, Please contact us. We apologize for the inconvenience'),
-                                            actions: [
-                                              ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Ok'))
-                                            ],
-                                          );
-                                        });
-                                  } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => GetImage(
-                                                  searchedText:
-                                                      _controller.text,
-                                                )));
-                                  }
-                                },
-                                icon: const Icon(Icons.search))));
-                  } else {
-                    setState(() {
-                      actionIcon = Icon(
-                        Icons.search,
-                        color: Colors.pinkAccent,
-                      );
-                    });
-
-                    appBarTitle = const Text(
-                      'ADGL Certificate',
-                      style: TextStyle(color: Colors.lightBlueAccent),
-                    );
-                  }
-                });
-              },
-            ),
-          ],
         ),
         body: CustomScrollView(
           slivers: [

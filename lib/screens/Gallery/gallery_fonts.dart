@@ -11,12 +11,14 @@ class GalleyFontD extends StatefulWidget {
 
 class _GalleyFontDState extends State<GalleyFontD> {
   String fontStyle = 'Dancing Script';
+
   String inputFont = "Aastha Hallmark";
 
   CupertinoPicker getFontFamily() {
     List<Text> cupertinoItems = [];
     for (String items in fontFamily) {
-      cupertinoItems.add(Text(items));
+      cupertinoItems
+          .add(Text('AAHC - ${(items.hashCode / 10000).toStringAsFixed(0)}'));
     }
     return CupertinoPicker(
       itemExtent: 30,
