@@ -108,14 +108,16 @@ class _GalleyFontDState extends State<GalleyFontD> {
                   // labelStyle: TextStyle(color: Colors.black),
                 )),
           ),
-          Container(
-            //**cupertino selector */
-            height: 200,
-            alignment: Alignment.center,
-            // ignore: prefer_const_constructors
+          Expanded(
+            child: Container(
+              //**cupertino selector */
+              height: 200,
+              alignment: Alignment.center,
+              // ignore: prefer_const_constructors
 
-            color: Colors.amber,
-            child: getFontFamily(),
+              color: Colors.amber,
+              child: getFontFamily(),
+            ),
           ),
         ],
       ),

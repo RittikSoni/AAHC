@@ -1,8 +1,5 @@
 import 'package:aahc/constants.dart';
-
-import 'package:aahc/screens/getimage.dart';
-
-import 'package:aahc/screens/slideimg.dart';
+import 'package:aahc/models/getimage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -199,25 +196,12 @@ class _ADGLState extends State<ADGL> {
                                 image: AssetImage('images/adgl/article4.JPG'),
                                 fit: BoxFit.cover)),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SlideImages()));
-                        },
-                        child: Hero(
-                          tag: 'slideimage',
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage('images/adgl/article5.png'),
-                                    fit: BoxFit.contain)),
-                          ),
-                        ),
+                      Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            image: DecorationImage(
+                                image: AssetImage('images/adgl/article5.png'),
+                                fit: BoxFit.contain)),
                       ),
                     ],
                     options: CarouselOptions(

@@ -49,6 +49,7 @@ dependencies:
   fluttertoast: ^8.0.8
   fl_chart: ^0.36.3
   youtube_player_flutter: ^8.0.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
     - images/gallery/
     - images/adgl/
     - images/social/
+    - images/banners/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

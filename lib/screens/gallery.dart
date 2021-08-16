@@ -1,17 +1,15 @@
-import 'package:aahc/screens/Gallery/bottom_fonts.dart';
-import 'package:aahc/screens/new_cloud_gallery.dart';
+import 'package:aahc/screens/Gallery/new_cloud_gallery.dart';
+import 'package:aahc/video/screens/video_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'Gallery/gallery_images.dart';
-import 'Gallery/gallery_video.dart';
 import 'Gallery/gallery_fonts.dart';
 
 int _gindex = 0;
 List tabs = [
-  const GalleryImages(),
+  // const GalleryImages(),
   CloudGallery(),
   GalleyFontD(),
-  GalleryVideo()
+  VideoHome(),
 ];
 
 class Gallery extends StatefulWidget {
@@ -34,17 +32,17 @@ class _GalleryState extends State<Gallery> {
           color: Colors.cyan,
           gap: 10,
           tabs: const [
-            GButton(
-              icon: Icons.image,
-              text: 'Images',
-            ),
+            // GButton(
+            //   icon: Icons.image,
+            //   text: 'Images',
+            // ),
             GButton(
               icon: Icons.image_search,
               text: 'Images',
             ),
             GButton(
               icon: Icons.design_services,
-              text: 'Fonts',
+              text: 'Customize',
             ),
             GButton(
               icon: Icons.movie,

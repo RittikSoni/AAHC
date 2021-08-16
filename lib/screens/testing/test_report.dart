@@ -333,7 +333,11 @@ class _TestReportState extends State<TestReport> {
                                 height: 150,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                    border: Border.all(width: 2),
+                                    border: Border.all(
+                                        width: 2,
+                                        color: isADark
+                                            ? Colors.purple
+                                            : Colors.amber.withOpacity(0.5)),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10))),
                                 child: Text(

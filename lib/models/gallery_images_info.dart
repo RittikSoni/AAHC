@@ -1,5 +1,6 @@
 class GImages {
   String? gImgUrl;
   String? name;
-  GImages({this.gImgUrl, this.name});
+  String? docId;
+  GImages({this.gImgUrl, this.name, this.docId});
 }

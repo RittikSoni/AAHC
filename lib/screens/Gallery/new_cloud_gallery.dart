@@ -1,7 +1,7 @@
 import 'dart:io';
-
+import 'package:aahc/models/carousel_slides.dart';
 import 'package:aahc/models/gallery_images_info.dart';
-import 'package:aahc/screens/cloud_gallery_details.dart';
+import 'package:aahc/screens/Gallery/cloud_gallery_details.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,42 +32,38 @@ class _CloudGalleryState extends State<CloudGallery> {
     return Scaffold(
         body: Column(
       children: [
-        CarouselSlider(
-          items: [
-            Container(
-              // width: double.infinity,
-              decoration: const BoxDecoration(
-                  // borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      image: AssetImage('images/aahc_banner.jpg'),
-                      fit: BoxFit.fill)),
+        Expanded(
+          flex: MediaQuery.of(context).orientation == Orientation.landscape
+              ? 1
+              : 0,
+          child: CarouselSlider(
+            items: [
+              CarouselImageSlides(
+                  imgPath: 'images/banners/aastha_hallmark.jpg'),
+              CarouselImageSlides(imgPath: 'images/banners/aahc_banner.jpg'),
+              CarouselImageSlides(imgPath: 'images/banners/engrave.gif'),
+              CarouselImageSlides(imgPath: 'images/banners/get_hallmark.gif'),
+              CarouselImageSlides(imgPath: 'images/banners/testing.gif'),
+              CarouselImageSlides(imgPath: 'images/banners/aahc.gif'),
+            ],
+            options: CarouselOptions(
+              height: 200.0,
+              viewportFraction: 1,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlay: true,
+              enlargeCenterPage: true,
             ),
-            Container(
-              // width: double.infinity,
-              decoration: const BoxDecoration(
-                  // borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      image: AssetImage('images/aahc_banner_gif.gif'),
-                      fit: BoxFit.fill)),
-            ),
-            Container(
-              // width: double.infinity,
-              decoration: const BoxDecoration(
-                  // borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      image: AssetImage('images/aahc_banner2_gif.gif'),
-                      fit: BoxFit.fill)),
-            ),
-          ],
-          options: CarouselOptions(
-            height: 200.0,
-            viewportFraction: 1,
-            autoPlay: true,
-            enlargeCenterPage: true,
           ),
         ),
         const SizedBox(
           height: 20,
+        ),
+        Text(
+          'Make Sure that you are connected with Internet !',
+          style: TextStyle(
+            fontStyle: FontStyle.italic,
+          ),
+          textAlign: TextAlign.center,
         ),
         Expanded(
           child: Container(
@@ -100,8 +96,9 @@ class _CloudGalleryState extends State<CloudGallery> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                              image: NetworkImage(listGImages[index].gImgUrl!),
-                              fit: BoxFit.fill),
+                            image: NetworkImage(listGImages[index].gImgUrl!),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -116,22 +113,26 @@ class _CloudGalleryState extends State<CloudGallery> {
   }
 
   Future<void> loading() async {
-    QuerySnapshot querySnapshot = await _fireStore
-        .collection('gallery')
-        .orderBy('timestamp', descending: true)
-        .get();
+    try {
+      QuerySnapshot querySnapshot = await _fireStore
+          .collection('gallery')
+          .orderBy('timestamp', descending: true)
+          .get();
 
-    // Get data from docs and convert map to List
-    // final allData =
-    //     querySnapshot.docs.map((doc) => doc.get('imageURL')).toList();
-    final allData2 = querySnapshot.docs.map((doc) => doc.data()).toList();
-    for (var data in querySnapshot.docs) {
-      setState(() {
-        showSpinner = false;
-        docId = data.id;
-        listGImages.add(
-            GImages(gImgUrl: data.get('imageURL'), name: data.get('name')));
-      });
+      // Get data from docs and convert map to List
+      // final allData =
+      //     querySnapshot.docs.map((doc) => doc.get('imageURL')).toList();
+      final allData2 = querySnapshot.docs.map((doc) => doc.data()).toList();
+      for (var data in querySnapshot.docs) {
+        setState(() {
+          docId = data.id;
+          listGImages.add(
+              GImages(gImgUrl: data.get('imageURL'), name: data.get('name')));
+          showSpinner = false;
+        });
+      }
+    } catch (e) {
+      print('Error in new cloud gallery');
     }
 
     // for (var rs in allData) {

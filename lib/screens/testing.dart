@@ -1,5 +1,7 @@
 import 'package:aahc/constants.dart';
-import 'package:aahc/screens/test_report.dart';
+import 'package:aahc/models/carousel_slides.dart';
+import 'package:aahc/screens/testing/test_report.dart';
+import 'package:aahc/terms_conditions.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -18,6 +20,55 @@ class _TestingState extends State<Testing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.purple),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => TermsAndCond()));
+                        },
+                        child: Text(
+                          'T&C',
+                          style: TextStyle(fontSize: 8, color: Colors.red),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Back',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ],
+      ),
       appBar: AppBar(
         leading: Image.asset('images/aahclogo.png'),
         title: TextField(
@@ -85,36 +136,23 @@ class _TestingState extends State<Testing> {
                     children: [
                       CarouselSlider(
                         items: [
-                          Container(
-                            // width: double.infinity,
-                            decoration: const BoxDecoration(
-                                // borderRadius: BorderRadius.all(Radius.circular(20)),
-                                image: DecorationImage(
-                                    image: AssetImage('images/aahc_banner.jpg'),
-                                    fit: BoxFit.fill)),
-                          ),
-                          Container(
-                            // width: double.infinity,
-                            decoration: const BoxDecoration(
-                                // borderRadius: BorderRadius.all(Radius.circular(20)),
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'images/aahc_banner_gif.gif'),
-                                    fit: BoxFit.fill)),
-                          ),
-                          Container(
-                            // width: double.infinity,
-                            decoration: const BoxDecoration(
-                                // borderRadius: BorderRadius.all(Radius.circular(20)),
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'images/aahc_banner2_gif.gif'),
-                                    fit: BoxFit.fill)),
-                          ),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/aastha_hallmark.jpg'),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/get_hallmark.gif'),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/testing.gif'),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/aahc_banner.jpg'),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/aahc.gif'),
+                          CarouselImageSlides(
+                              imgPath: 'images/banners/engrave.gif'),
                         ],
                         options: CarouselOptions(
                           height: 200.0,
                           viewportFraction: 1,
+                          autoPlayInterval: Duration(seconds: 3),
                           autoPlay: true,
                           enlargeCenterPage: true,
                         ),
@@ -135,7 +173,7 @@ class _TestingState extends State<Testing> {
                                 TextSpan(
                                   text: 'Get Your Jewellery Testing Report',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w400,
                                       color: Colors.lightBlue),
                                 ),
                                 TextSpan(
@@ -149,28 +187,11 @@ class _TestingState extends State<Testing> {
                                 ),
                               ],
                             ),
-                          ))
+                          )),
                     ],
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back_ios_new),
-                            Text('Back'),
-                          ],
-                        )),
-                  ),
-                ],
-              )
             ],
           ),
         ),

@@ -13,6 +13,7 @@ import 'screens/gallery.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   await Firebase.initializeApp();
   runApp(Aahc());
 }
@@ -102,9 +103,10 @@ class _AahcState extends State<Aahc> {
             tabs: const [
               GButton(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.zero,
-                    bottomRight: Radius.circular(20),
-                    topRight: Radius.circular(20)),
+                  topLeft: Radius.zero,
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
                 icon: Icons.home,
                 text: 'Home',
               ),
@@ -126,9 +128,11 @@ class _AahcState extends State<Aahc> {
               ),
               GButton(
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.zero,
-                    bottomRight: Radius.circular(20),
-                    topLeft: Radius.circular(20)),
+                  topRight: Radius.zero,
+                  bottomRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
                 icon: Icons.more_horiz_outlined,
                 text: 'More',
               ),

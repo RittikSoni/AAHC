@@ -21,12 +21,14 @@ class _LoginCardState extends State<LoginCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent.withOpacity(0.3),
-        actions: [
-          IconButton(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.lightBlueAccent.withOpacity(0.3),
+          actions: [
+            IconButton(
               onPressed: () {
                 _auth.signOut();
                 Navigator.pop(context);
@@ -34,58 +36,60 @@ class _LoginCardState extends State<LoginCard> {
               icon: const Icon(
                 Icons.logout,
                 color: Colors.red,
-              ))
-        ],
-        title: Text(
-          'AAHC',
-          style: TextStyle(color: Colors.blue),
-        ),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            child: imageFile == null
-                ? Image(
-                    image: AssetImage('images/aahc_logo1.png'),
-                    width: 200,
-                    height: 200,
-                  )
-                : Image.file(
-                    imageFile!,
-                    width: 400,
-                    height: 400,
-                  ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (imageFile == null) {
-                Fluttertoast.showToast(
-                    msg: 'Select img',
-                    gravity: ToastGravity.BOTTOM,
-                    toastLength: Toast.LENGTH_LONG,
-                    timeInSecForIosWeb: 2);
-              } else {
-                upload();
-              }
-            },
-            child: Text('Upload'),
-          ),
-          TextField(
-            //* image name/
-
-            controller: controller,
-            decoration: kTextfieldDecoration.copyWith(
-              hintText: 'Img name',
+              ),
             ),
+          ],
+          title: Text(
+            'AAHC',
+            style: TextStyle(color: Colors.blue),
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showDialog();
-          print('emptyyyyy');
-        },
-        child: Icon(Icons.add_a_photo),
+        ),
+        body: ListView(
+          children: [
+            Container(
+              child: imageFile == null
+                  ? Image(
+                      image: AssetImage('images/aahc_logo1.png'),
+                      width: 200,
+                      height: 200,
+                    )
+                  : Image.file(
+                      imageFile!,
+                      width: 400,
+                      height: 400,
+                    ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (imageFile == null) {
+                  Fluttertoast.showToast(
+                      msg: 'Select img',
+                      gravity: ToastGravity.BOTTOM,
+                      toastLength: Toast.LENGTH_LONG,
+                      timeInSecForIosWeb: 2);
+                } else {
+                  upload();
+                }
+              },
+              child: Text('Upload'),
+            ),
+            TextField(
+              //* image name/
+
+              controller: controller,
+              decoration: kTextfieldDecoration.copyWith(
+                hintText: 'Img name',
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showDialog();
+            print('emptyyyyy');
+          },
+          child: Icon(Icons.add_a_photo),
+        ),
       ),
     );
   }

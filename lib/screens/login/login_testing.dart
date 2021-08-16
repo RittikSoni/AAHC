@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:aahc/components/custom_appbar.dart';
 import 'package:aahc/constants.dart';
 import 'package:aahc/models/gallery_images_info.dart';
+import 'package:aahc/screens/login/login_testing_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,105 +26,134 @@ class _LoginTestingState extends State<LoginTesting> {
   final _caratController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _fireStore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   final _fireStorage = FirebaseStorage.instance;
   File? _imageFile;
   List<GImages> listGImages = [];
   String? docId;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showDialog();
-        },
-        child: Icon(Icons.add),
-      ),
-      appBar: CustomAppBar().cutomAppBar(),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              child: ListView(
-                children: [
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: _idController,
-                    decoration:
-                        kTextfieldDecoration.copyWith(hintText: 'testID'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: _descriptionController,
-                    decoration:
-                        kTextfieldDecoration.copyWith(hintText: 'Description'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.phone,
-                    controller: _weightController,
-                    decoration: kTextfieldDecoration.copyWith(
-                        hintText: 'Weight(in gms)'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.phone,
-                    controller: _caratController,
-                    decoration:
-                        kTextfieldDecoration.copyWith(hintText: 'Carat'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: _auController,
-                    keyboardType: TextInputType.phone,
-                    decoration: kTextfieldDecoration.copyWith(hintText: 'AU%'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: _agController,
-                    keyboardType: TextInputType.phone,
-                    decoration: kTextfieldDecoration.copyWith(hintText: 'AG%'),
-                  ),
-                  TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: _otherController,
-                    keyboardType: TextInputType.phone,
-                    decoration:
-                        kTextfieldDecoration.copyWith(hintText: 'Other%'),
-                  ),
-                  TextField(
-                    controller: _remarkController,
-                    decoration:
-                        kTextfieldDecoration.copyWith(hintText: 'Remarks'),
-                    maxLines: 5,
-                  ),
-                  Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      image: DecorationImage(
-                        image: _imageFile == null
-                            ? AssetImage('images/aahclogo.png')
-                            : FileImage(_imageFile!) as ImageProvider,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showDialog();
+          },
+          child: Icon(Icons.add),
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginTestingList()));
+              },
+              icon: Icon(
+                Icons.list,
+              )),
+          title: Text('AAHC'),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                _auth.signOut();
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.logout),
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                child: ListView(
+                  children: [
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: _idController,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'testID'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: _descriptionController,
+                      decoration: kTextfieldDecoration.copyWith(
+                          hintText: 'Description'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.phone,
+                      controller: _weightController,
+                      decoration: kTextfieldDecoration.copyWith(
+                          hintText: 'Weight(in gms)'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.phone,
+                      controller: _caratController,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'Carat'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: _auController,
+                      keyboardType: TextInputType.phone,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'AU%'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: _agController,
+                      keyboardType: TextInputType.phone,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'AG%'),
+                    ),
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: _otherController,
+                      keyboardType: TextInputType.phone,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'Other%'),
+                    ),
+                    TextField(
+                      controller: _remarkController,
+                      decoration:
+                          kTextfieldDecoration.copyWith(hintText: 'Remarks'),
+                      maxLines: 5,
+                    ),
+                    Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        image: DecorationImage(
+                          image: _imageFile == null
+                              ? AssetImage('images/aahclogo.png')
+                              : FileImage(_imageFile!) as ImageProvider,
+                        ),
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      _upload();
-                    },
-                    child: Text('Upload'),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Colors.lightBlue.withOpacity(0.5)),
+                    TextButton(
+                      onPressed: () {
+                        _upload();
+                      },
+                      child: Text('Upload'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Colors.lightBlue.withOpacity(0.5)),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -259,19 +290,4 @@ class _LoginTestingState extends State<LoginTesting> {
           });
     }
   }
-
-  // Future<void> loading() async {
-  //   QuerySnapshot querySnapshot = await _fireStore
-  //       .collection('testing')
-  //       .orderBy('timestamp', descending: true)
-  //       .get();
-  //   // final allData2 = querySnapshot.docs.map((doc) => doc.data()).toList();
-  //   for (var data in querySnapshot.docs) {
-  //     setState(() {
-  //       docId = data.id;
-  //       listGImages.add(
-  //           GImages(gImgUrl: data.get('imageURL'), name: data.get('testID')));
-  //     });
-  //   }
-  // }
 }

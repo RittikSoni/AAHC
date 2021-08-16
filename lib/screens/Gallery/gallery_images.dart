@@ -191,14 +191,14 @@ final List<ImageDetails> _images = [
     details:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
   ),
-  ImageDetails(
-    imagePath: 'images/gallery/product2.png',
-    price: 'AAHC',
-    photographer: 'AAHC',
-    title: 'Engraved Jewellery',
-    details:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
-  ),
+  // ImageDetails(
+  //   imagePath: 'images/gallery/product2.png',
+  //   price: 'AAHC',
+  //   photographer: 'AAHC',
+  //   title: 'Engraved Jewellery',
+  //   details:
+  //       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil error aspernatur, sequi inventore eligendi vitae dolorem animi suscipit. Nobis, cumque.',
+  // ),
   ImageDetails(
     imagePath: 'images/gallery/product3.png',
     price: 'AAHC',

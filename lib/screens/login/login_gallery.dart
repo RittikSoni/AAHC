@@ -28,106 +28,111 @@ class _LoginGalleryState extends State<LoginGallery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showDialog();
-        },
-        child: Icon(Icons.add),
-      ),
-      appBar: CustomAppBar().cutomAppBar(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // TextButton(
-            //     onPressed: () {
-            //       print(listGImages[0]);
-            //       print(listGImages[0].gImgUrl);
-            //       print(listGImages[0].name);
-            //     },
-            //     child: Text('check')),
-            Expanded(
-              child: Container(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: listGImages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return RawMaterialButton(
-                      onPressed: () {},
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            child: Image(
-                              image: NetworkImage(listGImages[index].gImgUrl!),
-                              fit: BoxFit.fill,
-                              width: 150,
-                              height: 150,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showDialog();
+          },
+          child: Icon(Icons.add),
+        ),
+        appBar: CustomAppBar().cutomAppBar(),
+        body: SafeArea(
+          child: Column(
+            children: [
+              // TextButton(
+              //     onPressed: () {
+              //       print(listGImages[0]);
+              //       print(listGImages[0].gImgUrl);
+              //       print(listGImages[0].name);
+              //     },
+              //     child: Text('check')),
+              Expanded(
+                child: Container(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: listGImages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return RawMaterialButton(
+                        onPressed: () {},
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              child: Image(
+                                image:
+                                    NetworkImage(listGImages[index].gImgUrl!),
+                                fit: BoxFit.fill,
+                                width: 150,
+                                height: 150,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                              child: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _fireStore
-                                          .collection('gallery')
-                                          .doc(docId)
-                                          .delete();
-                                      _fireStorage
-                                          .ref('gallery')
-                                          .child(listGImages[index].name!)
-                                          .delete();
+                            Positioned(
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _fireStore
+                                            .collection('gallery')
+                                            .doc(listGImages[index].docId)
+                                            .delete();
+                                        _fireStorage
+                                            .ref('gallery')
+                                            .child(listGImages[index].name!)
+                                            .delete();
 
-                                      // listGImages.clear();
-                                      loading();
-                                      dialog();
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.delete_forever,
-                                  )))
-                        ],
-                      ),
-                    );
-                  },
+                                        // listGImages.clear();
+                                        loading();
+                                        dialog();
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.delete_forever,
+                                    )))
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 100,
-              width: 200,
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 5, color: Colors.pinkAccent),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: _imageFile == null
-                  ? const Text(
-                      'nothing is selected',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    )
-                  : Image.file(_imageFile!),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 70),
-              child: TextField(
-                  controller: _gimgname,
-                  decoration:
-                      kTextfieldDecoration.copyWith(hintText: 'Image Name')),
-            ),
-            TextButton(
-                onPressed: () {
-                  upload();
-                },
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.lightBlueAccent)),
-                child: Text(
-                  'Upload',
-                  style: TextStyle(color: Colors.white),
-                )),
-          ],
+              Container(
+                height: 100,
+                width: 200,
+                alignment: Alignment.bottomCenter,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 5, color: Colors.pinkAccent),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: _imageFile == null
+                    ? const Text(
+                        'nothing is selected',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )
+                    : Image.file(_imageFile!),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 70),
+                child: TextField(
+                    controller: _gimgname,
+                    decoration:
+                        kTextfieldDecoration.copyWith(hintText: 'Image Name')),
+              ),
+              TextButton(
+                  onPressed: () {
+                    upload();
+                  },
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.lightBlueAccent)),
+                  child: Text(
+                    'Upload',
+                    style: TextStyle(color: Colors.white),
+                  )),
+            ],
+          ),
         ),
       ),
     );
@@ -196,26 +201,16 @@ class _LoginGalleryState extends State<LoginGallery> {
         .orderBy('timestamp', descending: true)
         .get();
 
-    // Get data from docs and convert map to List
-    // final allData =
-    //     querySnapshot.docs.map((doc) => doc.get('imageURL')).toList();
     final allData2 = querySnapshot.docs.map((doc) => doc.data()).toList();
     for (var data in querySnapshot.docs) {
       setState(() {
-        docId = data.id;
-        listGImages.add(
-            GImages(gImgUrl: data.get('imageURL'), name: data.get('name')));
+        // docId = data.id;
+        listGImages.add(GImages(
+            gImgUrl: data.get('imageURL'),
+            name: data.get('name'),
+            docId: data.id));
       });
     }
-    // for (var rs in allData) {
-    //   setState(() {
-    //     listGImages.add(
-    //       (GImages(
-    //         gImgUrl: rs.toString(),
-    //       )),
-    //     );
-    //   });
-    // }
   }
 
   Future dialog() {

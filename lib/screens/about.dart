@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'about_details.dart';
+import 'about/about_details.dart';
 
 class About extends StatefulWidget {
   About({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _AboutState extends State<About> {
               Navigator.pop(context);
             },
             icon: Icon(
-              Icons.arrow_back,
+              Icons.close,
             ),
             color: Colors.pinkAccent,
           )

@@ -55,6 +55,7 @@ class _LoginState extends State<Login> {
                     height: 48,
                   ),
                   TextField(
+                    textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     textAlign: TextAlign.center,
                     onChanged: (value) {
