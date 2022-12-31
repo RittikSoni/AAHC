@@ -1,6 +1,6 @@
 # aahc
 
-AASTHA ASSAYING & HALLMARKING CENTRE.
+AAHC.
 
 <!-- ## Getting Started
 
